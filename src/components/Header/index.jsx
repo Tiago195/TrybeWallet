@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import titleIMG from '../../images/logo.png';
 
 class index extends Component {
   render() {
@@ -10,15 +11,21 @@ class index extends Component {
       <header
         style={ {
           display: 'flex',
+          color: '#f0f0f0 ',
           width: '100%',
           justifyContent: 'space-around',
           alignItems: 'center',
+          backgroundColor: '#2d2d2d',
+          borderBottom: '2px solid #f66a69',
+          marginBottom: '10px',
+          padding: '10px 0',
         } }
       >
         <img
-          src="https://d23cwzsbkjbm45.cloudfront.net/static/images/testcenter/splash/test_readiness/img-readiness-header.svg"
-          alt="img test"
-          width="100px"
+          src={ titleIMG }
+          className="title"
+          alt="Logo Trybe"
+          width="200px"
         />
         <section
           style={ { display: 'flex', gap: '20px' } }
@@ -29,7 +36,7 @@ class index extends Component {
             {email}
           </h4>
           <h4>
-            Despesa Tolal: R$
+            Despesa Total: R$
             {' '}
             <span data-testid="total-field">{totalGasto.toFixed(2)}</span>
             {' '}

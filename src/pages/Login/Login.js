@@ -36,9 +36,7 @@ class Login extends React.Component {
     return (
       <section className="login-container">
         <section className="form-container">
-          <section
-            style={ { flex: '1' } }
-          >
+          <section className="logos">
             <div>
               <img className="titleIMG" src={ titleImg } alt="logo wallet" width="100%" />
             </div>
@@ -47,13 +45,7 @@ class Login extends React.Component {
             </div>
           </section>
           <form className="form-login">
-            <h1
-              style={ { textAlign: 'center',
-                letterSpacing: '1px',
-                fontSize: '24px',
-                fontWeight: '900',
-                color: '#414042' } }
-            >
+            <h1 className="welcome">
               BEM VINDO
               {' '}
               <span role="img" aria-label="Duck">🦆</span>

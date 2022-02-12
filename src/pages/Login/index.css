@@ -1,6 +1,6 @@
 .login-container {
   align-items: center;
-  background-color: #0f1823;
+  background-color: #f6f6f6;
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -8,22 +8,45 @@
 }
 
 .form-container {
-  background-color: #84b4ef;
-  border-radius: 3px;
+  background-color: #efefef;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px black;
   display: flex;
-  gap: 20px;
   height: 60vh;
   max-width: 700px;
   min-width: 550px;
-  padding: 20px;
+}
+
+.logos {
+  background-color: #060c18;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  flex: 1;
+}
+
+.welcome {
+  color: #060c18;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: center;
 }
 
 .titleIMG {
+  animation: titleUp 1.5s forwards ease-out;
+  filter: brightness(0) contrast(0);
   position: relative;
   z-index: 1;
 }
 
+.title {
+  animation: tutu 1.5s forwards ease-out;
+  filter: brightness(0) contrast(0);
+}
+
 .walletIMG {
+  animation: walletDown 2s forwards ease-out;
+  filter: drop-shadow(0 50px 3px rgba(0, 0, 0, 0.29));
   transform: translateY(-100px);
 }
 
@@ -32,15 +55,59 @@
   flex: 1;
   flex-direction: column;
   justify-content: space-evenly;
+  padding: 20px;
 }
 
 .btn-login {
+  border: 2px solid #060c18;
+  border-radius: 5px;
+  color: #060c18;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
   margin: 0 auto;
+  opacity: 1;
   padding: 9px 36px;
+  transition: all 0.3s;
   width: fit-content;
 }
 
+.btn-login:hover {
+  background-color: #060c18;
+  color: #efefef;
+}
+
 .btn-login:disabled {
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #060c18;
+  border-radius: 5px;
+  color: #060c18;
   cursor: not-allowed;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  opacity: 0.3;
+}
+
+@keyframes walletDown {
+
+  to {
+    transform: translateY(-50px) scale(1.4);
+  }
+}
+
+@keyframes titleUp {
+
+  to {
+    filter: brightness(5) contrast(3);
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes tutu {
+
+  to {
+    filter: brightness(5) contrast(3);
+  }
 }

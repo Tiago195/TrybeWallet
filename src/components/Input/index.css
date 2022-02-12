@@ -1,21 +1,24 @@
 .input {
-  background-color: rgba(240, 248, 255, 0);
+  background-color: #2d2d2d;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  color: #414042;
+  border-bottom: 4px solid black;
+  border-radius: 3px;
+  color: #f0f0f0;
   font-weight: 800;
-  padding: 4px;
+  padding: 6px;
   position: relative;
   width: 100%;
 }
 
 .input:focus-visible {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   outline: none;
 }
 
+.input::placeholder {
+  color: #f0f0f0;
+}
+
 .input:-webkit-autofill , .input:-webkit-autofill:hover {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 0 1000px #84b4ef inset;
-  -webkit-text-fill-color: #414042;
+  box-shadow: 0 0 0 1000px #2d2d2d inset;
+  -webkit-text-fill-color: #e1e1dc;
 }

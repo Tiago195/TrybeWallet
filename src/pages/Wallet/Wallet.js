@@ -1,9 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
-import FormsAddGasto from '../components/FormsAddGasto';
-import { actionCurrency, attGastos, DELETE_GASTO_TYPE, ATT_GASTO_TYPE } from '../actions';
+import { FaTrashAlt, FaEdit } from 'react-icons/fa';
+import FormsAddGasto from '../../components/FormsAddGasto';
+
+import {
+  actionCurrency,
+  attGastos,
+  DELETE_GASTO_TYPE,
+  ATT_GASTO_TYPE,
+} from '../../actions';
+import './index.css';
 
 class Wallet extends React.Component {
   constructor() {
@@ -11,6 +18,7 @@ class Wallet extends React.Component {
 
     this.addStore = this.addStore.bind(this);
     this.attItem = this.attItem.bind(this);
+    this.editItem = this.editItem.bind(this);
 
     this.state = {
       editGatos: {
@@ -41,14 +49,28 @@ class Wallet extends React.Component {
     this.setState({ editGatos: { ...editGatos, editando: false } });
   }
 
+  editItem(target, Gastos) {
+    const targetId = target.id ? target.id : target.parentElement.id;
+    const select = (Gastos[targetId]);
+    this.setState({ editGatos: {
+      editando: true,
+      issEdit: { ...select, idEdid: targetId },
+    } });
+  }
+
   render() {
     const { Gastos, deleItem } = this.props;
     const { editGatos } = this.state;
 
     return (
-      <section>
-        <Header />
-        <section>
+      <section className="wallet-container">
+        <section
+          style={ {
+            background: `${editGatos.editando ? '#3886b2' : '#2d2d2d'}`,
+            borderRadius: '5px',
+            transition: 'all 0.3s',
+          } }
+        >
           {!editGatos.editando && (
             <FormsAddGasto attStoreCallBack={ this.addStore } />
           )}
@@ -64,10 +86,15 @@ class Wallet extends React.Component {
             />
           )}
         </section>
-        <table>
+        <table
+          style={ { width: '100%',
+            textAlign: 'center',
+            height: 'fit-content',
+            color: '#2d2d2d' } }
+        >
           <thead>
             <tr>
-              <th>Descrição</th>
+              <th style={ { width: '260px' } }>Descrição</th>
               <th>Tag</th>
               <th>Método de pagamento</th>
               <th>Valor</th>
@@ -81,41 +108,42 @@ class Wallet extends React.Component {
           <tbody>
             {Gastos
               .map(({ id, description, tag, method, value, currency, exchangeRates }) => (
-                <tr key={ id }>
-                  <td>{description}</td>
-                  <td>{tag}</td>
-                  <td>{method}</td>
-                  <td>{Number(value).toFixed(2)}</td>
-                  <td>{exchangeRates[currency].name.split('/')[0]}</td>
-                  <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
-                  <td>
-                    {
-                      (Number(value) * Number(exchangeRates[currency].ask)).toFixed(2)
-                    }
+                <tr className="test" key={ id }>
+                  <td className="item-list">{description}</td>
+                  <td className="item-list">{tag}</td>
+                  <td className="item-list">{method}</td>
+                  <td className="item-list">{Number(value).toFixed(2)}</td>
+                  <td className="item-list">
+                    {exchangeRates[currency].name.split('/')[0]}
                   </td>
-                  <td>Real</td>
-                  <td>
+                  <td className="item-list">
+                    {Number(exchangeRates[currency].ask).toFixed(2)}
+
+                  </td>
+                  <td className="item-list">
+                    {(value * exchangeRates[currency].ask).toFixed(2)}
+                  </td>
+                  <td className="item-list">Real</td>
+                  <td className="item-list">
                     <button
+                      className="edit-btn"
                       id={ id }
                       data-testid="edit-btn"
                       type="button"
-                      onClick={ ({ target }) => {
-                        const select = (Gastos[target.id]);
-                        this.setState({ editGatos: {
-                          editando: true,
-                          issEdit: { ...select, idEdid: target.id },
-                        } });
-                      } }
+                      onClick={ ({ target }) => this.editItem(target, Gastos) }
                     >
-                      Editar
+                      <FaEdit
+                        id={ id }
+                      />
                     </button>
                     <button
+                      className="edit-btn delete-btn"
                       id={ id }
                       type="button"
                       data-testid="delete-btn"
                       onClick={ ({ target }) => deleItem(target.id) }
                     >
-                      Deletar
+                      <FaTrashAlt id={ id } />
                     </button>
                   </td>
                 </tr>

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { response as mockData, initialStateHeader, initialStateWithExpenses } from './mockData';
 import App from '../App';
-import Wallet from '../pages/Wallet';
+import Wallet from '../pages/Wallet/Wallet';
 import { renderWithRouterAndStore } from './testConfig';
 
 const VALUE_INPUT_TEST_ID = 'value-input';
